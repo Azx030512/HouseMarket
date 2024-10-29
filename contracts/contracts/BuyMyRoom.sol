@@ -27,6 +27,11 @@ contract BuyMyRoom is ERC721, Ownable {
         nextTokenId = 1;
     }
 
+    // 获取 nextTokenId
+    function getNextTokenId() external view returns (uint256) {
+        return nextTokenId;
+    }
+
     function mintHouse(address to) external onlyOwner {
         uint256 tokenId = nextTokenId;
         _safeMint(to, tokenId);
@@ -34,7 +39,7 @@ contract BuyMyRoom is ERC721, Ownable {
         nextTokenId++;
     }
 
-    function listHouse(uint256 tokenId, uint256 price) external {
+    function listHouse(uint256 tokenId, uint256 price) external{
         require(ownerOf(tokenId) == msg.sender, "Not the house owner");
         require(price > 0, "Price must be greater than zero");
 
@@ -71,7 +76,7 @@ contract BuyMyRoom is ERC721, Ownable {
     }
 
     function getHouseInfo(uint256 tokenId) external view returns (address, uint256, uint256) {
-        House memory house = houses[tokenId];
-        return (house.owner, house.price, house.listedTimestamp);
+        return (houses[tokenId].owner, houses[tokenId].price, houses[tokenId].listedTimestamp);
+
     }
 }

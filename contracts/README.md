@@ -13,12 +13,16 @@ npx hardhat run scripts/deploy.ts
 npx hardhat run scripts/deploy.ts --network ganache
 ```
 
-### Curl commands for windows
+### Contraction compile commands for windows
 
 ```
-Invoke-WebRequest -Uri "http://localhost:8545" -Method POST -Body '{"jsonrpc":"2.0","method":"eth_coinbase", "id":1}' -ContentType "application/json"
+cd contracts
 ```
 
 ```
+npx hardhat compile
+```
 
+```
+npx hardhat run scripts\deploy.ts --network ganache
 ```
